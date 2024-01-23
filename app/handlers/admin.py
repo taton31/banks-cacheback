@@ -90,6 +90,7 @@ def send_admin_request(call):
     request_users.pop(adding_user, None)
     save_request_users(request_users)
 
+    global users
     users = get_users()
     users[str(adding_user)] = {'name': adding_user_name}
     save_users(users)
@@ -112,6 +113,7 @@ def send_admin_request(call):
 
 @bot.callback_query_handler(func=lambda call: call.data == 'remove_user', state=States.admin)
 def send_admin_request(call):
+    global users
     users = get_users()
     markup = types.InlineKeyboardMarkup()
     markup.row_width = 1
@@ -133,6 +135,7 @@ def send_admin_request(call):
     admins.discard(removing_user)
     save_admins(admins)
 
+    global users
     users = get_users()
     users.pop(str(removing_user), None)
     save_users(users)
