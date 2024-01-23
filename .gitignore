@@ -1,0 +1,5 @@
+*.zip
+venv/
+tst/
+db/*.txt
+__pycache__
