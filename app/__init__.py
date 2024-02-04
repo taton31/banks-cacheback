@@ -4,6 +4,11 @@ from telebot import custom_filters
 
 from telebot.storage import StateMemoryStorage
 
+from dotenv import load_dotenv
+load_dotenv('.env')
+
+import os
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 state_storage = StateMemoryStorage() 
 
@@ -13,7 +18,7 @@ class States(StatesGroup):
     banks = State()
 
 
-bot = telebot.TeleBot('6985315796:AAH3_q1CxDCnU1kWns7GviYDE3D1QhYd1sY', state_storage=state_storage)
+bot = telebot.TeleBot(BOT_TOKEN, state_storage=state_storage)
 from banks_class.alfa_class import Alfa
 from banks_class.tinkoff_class import Tinkoff
 
