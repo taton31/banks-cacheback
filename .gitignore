@@ -3,3 +3,4 @@ venv/
 tst/
 db/*.txt
 __pycache__
+.env
