@@ -22,10 +22,10 @@ def start(message):
     except:
         bot.send_message(message.chat.id, "Произошла ошибка при считывании данных для входа\nПроверьте, сохранены ли данные")
         return
-        
-    sessions[message.chat.id]['alfa'] = Alfa(alfa_username, alfa_password)
-    sessions[message.chat.id]['tinkoff'] = Tinkoff(tinkoff_number)
-    
+    if (message.chat.id not in sessions) or ('tinkoff' not in sessions[message.chat.id]) or ('alfa' not in sessions[message.chat.id]):
+    	sessions[message.chat.id]['alfa'] = Alfa(alfa_username, alfa_password)
+    	sessions[message.chat.id]['tinkoff'] = Tinkoff(tinkoff_number)
+
     connect_alfa = types.InlineKeyboardButton("Подключиться к Альфа-банку", callback_data='connect_alfa')
     remove_tinkoff = types.InlineKeyboardButton("Подключиться к Тинькофф", callback_data='connect_tinkoff')
     refresh_offers = types.InlineKeyboardButton("Обновить офферы", callback_data='refresh_offers')
